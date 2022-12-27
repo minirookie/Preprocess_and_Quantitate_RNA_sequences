@@ -8,6 +8,7 @@ Note: From this analysis, we need to figure out the following:
 a. Encoding of Phred Scores: Phred+33 is listed as Illumina 1.9/Sanger, while Phred+64 encoding is Illumina 1.5 or lower. (Find more details here: https://sequencing.qcfail.com/articles/incorrect-encoding-of-phred-scores/)
 b. Sequence Length: The most common values are 46/45, 76/75, 101/100 or 151/150.
 c. Adapter Type: Illumina Universal Adapter(AGATCGGAAGAG), Illumina Small RNA 3' Adapter(TGGAATTCTCGG), Illumina Small RNA 5' Adapter(GATCGTCGGACT), Nextera Transposase Sequence(CTGTCTCTTATA) and SOLID Small RNA Adapter(CGCCTTGGCCGT).
+
 Here is an excellent tutorial for FastQC: https://www.youtube.com/watch?v=bz93ReOv87Y
 
 If no adaptors are found within the RAW FASTQ files, we are done for this step and use the RAW FASTQ files in subsequent analysis. Otherwise, we have to trim the adaptors.
