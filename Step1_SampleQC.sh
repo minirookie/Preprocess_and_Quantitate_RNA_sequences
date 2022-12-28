@@ -20,7 +20,7 @@ $cutadapt -a AGATCGGAAGAG -A AGATCGGAAGAG --trim-n --max-n=0.5 --quality-base=33
 $fastqc $FQfilepath/xxx_PE1.clean.fq.gz -o $QCoutputPath 
 $fastqc $FQfilepath/xxx_PE2.clean.fq.gz -o $QCoutputPath
 
-
+## Write the following looping scripts separately for batch submitting the sequence cleanup
 FQfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
 for f in $FQfilepath/*.raw.fq.gz; do
 name=$(basename $f .raw.fq.gz)
