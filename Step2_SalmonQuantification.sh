@@ -1,4 +1,4 @@
-## Write the following scripts in a .sh file to run salmon mapping and quantification on HPC
+## Write the following scripts in a .sh file to run salmon quasi-mapping and quantification on HPC
 #! /bin/sh
 #BSUB -P RNASeq_pipelines_02
 #BSUB -n 8
@@ -22,7 +22,7 @@ tr2gene_mm10=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp
 indir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
 outdir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/Salmon_Quanti
 
-#command line to run on pair-end sequencing files
+#run quantification on pair-end sequencing files
 $salmon quant -i $index_hg38 $index_hg39 $index_mm10 -l A -p 8 -g $tr2gene_hg38 $tr2gene_hg39 $tr2gene_mm10 \
 -1 $indir/sample_PE1.clean.fq.gz -2 $indir/sample_PE2.clean.fq.gz -o $outdir/sample
 
@@ -30,6 +30,7 @@ $salmon quant -i $index_hg38 $index_hg39 $index_mm10 -l A -p 8 -g $tr2gene_hg38 
 
 
 
+## Write separately the looping scripts below for batch submitting the above quantification jobs
 #! /bin/sh
 indir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
 outdir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/Salmon_Quanti
