@@ -27,7 +27,17 @@ $salmon quant -i $index_hg38 $index_hg39 $index_mm10 -l A -p 8 -g $tr2gene_hg38 
 -1 $indir/sample_PE1.clean.fq.gz -2 $indir/sample_PE2.clean.fq.gz -o $outdir/sample
 
 # For single-end sequencing, use $salmon quant -i $index -l A -p 8 -g $tr2gene -r $indir/sample.clean.fq.gz -o $outdir/sample
+# Output explanations:
+# 1) quant.sf: quantification results of transcripts. TPM and COUNTS are included.
+# 2) quant.genes.sf: quantification results of genes. TPM and COUNTS are included.
+# 3) lib_format_counts.json: library type is predicted: IOM(inward, outward, matching) + SU(stranded, unstranded) + FR(Forward, Reverse)
+# 4) check out here for more information: https://salmon.readthedocs.io/en/latest/salmon.html.
 
+# NOTE
+# 1) The default index files were generated under k=31. This is recommanded by Salmon, and works well for reads of 75bp or longer.
+# If the sequence reads of samples are shorter than 31bp, no hits (transcript match) will be found. In this case, one need to generate the index manually. 
+# The scripts to generate the index is the following .sh file
+# /research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg38/gencode.release32/Salmon/00_buildIndex_quasi.sh.
 
 
 ## Write separately the looping scripts below for batch submitting the above quantification jobs
