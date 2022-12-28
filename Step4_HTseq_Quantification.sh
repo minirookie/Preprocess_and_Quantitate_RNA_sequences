@@ -32,9 +32,6 @@ gtf_mm10=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yul
 CleanFQPath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
 Outdir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/QuantHTseq_STARalignment_GeneBody
 
-#Create an output directory
-#mkdir $Outdir/Sample
-
 # STAR Alignment for paired-end sequencing
 $star --runMode alignReads --runThreadN 8 --twopassMode Basic \
     --quantMode TranscriptomeSAM --outSAMtype BAM SortedByCoordinate --outFileNamePrefix $Outdir/Sample/ \
@@ -66,6 +63,8 @@ Outdir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/Je
 for file in $CleanFQPath/*.clean.fq.gz; do
 name=$(basename $file .clean.fq.gz)
 echo ${name}
+# create an output directory
+# mkdir $Outdir/Sample
 cat $Outdir/STAR_HTseq_Genebody_RunonHPC.sh |sed -e 's/Sample/'${name}'/g'|sed -e 's/SampSubs/'${name/%_PE*/}'/g' > tmp
 bsub < tmp
 done
