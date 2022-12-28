@@ -55,3 +55,17 @@ $genebody $outdir/Sample/readsDistribution.txt $outdir/Sample/genebodyCoverage
 # 3) quant.transcript.bam: alignments to reference transcriptome
 # 4) quant.transcript.sorted.bam: sorted alignments to reference transcriptome
 # 5) quant.transcript.sorted.bam.bai: index of sorted alignments to reference transcriptome
+
+
+#! /bin/sh
+CleanFQPath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
+outdir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/Bowtie2Alignment_RSEMQuanti
+
+for file in $CleanFQPath/*.clean.fq.gz;
+do
+    name=$(basename $file .clean.fq.gz)
+    echo ${name/%_PE*/}
+    # mkdir -p $outdir/${name/%_PE*/} $outdir/${name/%_PE*/}/quant.temp $outdir/${name/%_PE*/}/quant.stat
+    cat $outdir/RSEMnBowtie2_RunonHPC.sh |sed -e 's/Sample/'${name/%_PE*/}'/g' > tmp
+    bsub < tmp
+done
