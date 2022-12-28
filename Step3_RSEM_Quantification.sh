@@ -11,7 +11,7 @@
 rsem=/research_jude/rgs01_jude/applications/hpcf/apps/RSEM/1.3.0/rsem-calculate-expression
 bowtie2=/research_jude/rgs01_jude/applications/hpcf/apps/bowtie/install/2.2.9/bin
 bedtools=/research_jude/rgs01_jude/applications/hpcf/apps/bedtools/install/2.25.0/bin/bedtools
-genebody=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/git_repo/RNASeq_pipelines/05_genebodyCoverage.R
+genebody=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/git_repo/RNASeq_pipelines/Genebody_Coverage.R
 
 #reference database for indexing transcripts
 reference_hg38bowtie2=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg38/gencode.release32/RSEM/index_bowtie2/hg38
@@ -43,7 +43,7 @@ $rsem -p 8 \
 # 5) check out here for more information: https://github.com/bli25broad/RSEM_tutorial.
 
 
-#Gene Body Coverage
+#Genebody Coverage
 $bedtools multicov -bams $outdir/Sample/quant.transcript.sorted.bam -bed $binlist_hg38 > $outdir/Sample/readsDistribution.txt
 $genebody $outdir/Sample/readsDistribution.txt $outdir/Sample/genebodyCoverage
 # RSEM pipeline can be pretty finicky and computing intense. It is better to complete the $rsem and $genebody run subsequentially 
