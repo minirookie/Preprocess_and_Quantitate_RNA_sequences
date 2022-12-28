@@ -17,7 +17,7 @@ bamfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/A
 module load samtools
 
 ## To sort the BAM files, use "samtools sort -n -o output.sorted input.bam".
-##[* IF Error: fail to open file output.sorted, please use "samtools sort -n input.bam output.sorted"]
+## If there is error: "fail to open file output.sorted", use the command instead: samtools sort -n input.bam output.sorted
 samtools sort -n $bamfilepath/xxx.bam $sortedfilepath/xxx_sorted 
 
 ## Write the following looping scripts separately for batch submitting the sorting jobs
