@@ -1,3 +1,4 @@
+## Write the following scripts in a .sh file ("") to run salmon quasi-mapping and quantification on HPC
 #! /bin/sh
 #BSUB -P RNASeq_pipelines_GB
 #BSUB -n 8
