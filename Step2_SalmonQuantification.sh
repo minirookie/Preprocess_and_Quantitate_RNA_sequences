@@ -34,8 +34,8 @@ $salmon quant -i $index_hg38 $index_hg39 $index_mm10 -l A -p 8 -g $tr2gene_hg38 
 # 4) check out here for more information: https://salmon.readthedocs.io/en/latest/salmon.html.
 
 # NOTE
-# 1) The default index files were generated under k=31. This is recommanded by Salmon, and works well for reads of 75bp or longer.
-# If the sequence reads of samples are shorter than 31bp, no hits (transcript match) will be found. In this case, one need to generate the index manually. 
+# The default index files were generated under k=31. This is recommanded by Salmon, and works well for reads of 75bp or longer.
+# If the sequence reads of samples are shorter than 31bp, no hits (transcript match) will be found. One needs to generate the index manually in that case. 
 # The scripts to generate the index is the following .sh file
 # /research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg38/gencode.release32/Salmon/00_buildIndex_quasi.sh.
 
