@@ -1,4 +1,5 @@
 ## 1.1. Trim adaptors via HPC
+## Write the following scripts in a .sh file to run the trimming jobs on HPC
 #BSUB -P RNASeq_pipeline
 #BSUB -n 8
 #BSUB -R "rusage[mem=4000]"
