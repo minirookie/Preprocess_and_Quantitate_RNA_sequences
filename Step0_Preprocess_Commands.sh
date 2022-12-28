@@ -1,7 +1,7 @@
 ## 0.1 If starting from BAM files (e.g., downloaded from some databases), the BAM files of paired-end sequencing 
 ## MUST be first sorted by individual sequence names (indices). 
 
-## Write the following scripts in a .sh file ("sort_bySYB_Oct2022/BAM_sort_HPCJob.sh") to run the sorting jobs on HPC
+## Write the following scripts in a .sh file ("BAM_sort_HPCJob.sh") to run the sorting jobs on HPC
 ## "#BUSB" can be recognized by HPC to inititate the runs
 #! /bin/sh
 #BSUB -P RNASeq_pipeline
@@ -32,7 +32,7 @@ done
 
 
 ## 0.2 convert BAM files into FASTQ files
-## Write the following scripts in a .sh file to run the preprocessing jobs on HPC
+## Write the following scripts in a .sh file ("GenerateFASTQ_HPCJob_SETrial.sh") to run the preprocessing jobs on HPC
 #! /bin/sh
 #BSUB -P RNASeq_pipeline
 #BSUB -n 8
@@ -52,12 +52,14 @@ FQfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AM
 # For pair-end sequencing files, using 
 $bedtools bamtofastq -i $Sortedfilepath/xyz_sorted.bam -fq $FQfilepath/xyz_PE1.raw.fq -fq2 $FQfilepath/xyz_PE2.raw.fq
 
+
 ## Write the following looping scripts separately for batch submitting the bam-to-fq conversion jobs
-FQfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
-for f in $FQfilepath/*.raw.fq; do
-name=$(basename $f .raw.fq)
-echo ${name}
-cat $FQfilepath/RunGzip_HPCJob_SeTrial.sh | sed -e 's/xyz/'${name}'/g' > tmp
+Sortedfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAM/sort_bySYB_Oct2022
+FQfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/FASTQ_files_SeTrial
+for f in $Sortedfilepath/*.bam; do
+name=$(basename $f .bam)
+echo ${name/%_sorted/}
+cat $FQfilepath/GenerateFASTQ_HPCJob_SETrial.sh | sed -e 's/xyz/'${name/%_sorted/}'/g' > tmp
 bsub < tmp
 done
 
