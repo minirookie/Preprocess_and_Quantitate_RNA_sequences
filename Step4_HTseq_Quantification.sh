@@ -12,7 +12,7 @@ star=/research_jude/rgs01_jude/applications/hpcf/apps/star/install/2.5.3a/bin/ST
 htseq=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/conda_env/bulkRNA-seq/bin/htseq-count
 bedtools=/research_jude/rgs01_jude/applications/hpcf/apps/bedtools/install/2.25.0/bin/bedtools
 salmon=/research_jude/rgs01_jude/groups/yu3grp/projects/scRNASeq/yu3grp/qpan/Software/Salmon/bin/salmon
-genebody=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/git_repo/RNASeq_pipelines/05_genebodyCoverage.R
+genebody=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/git_repo/RNASeq_pipelines/Genebody_Coverage.R
 
 #reference database for indexing transcripts
 index_hg38oh100=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg38/gencode.release32/STAR/index_overhang100
@@ -56,7 +56,7 @@ $htseq -f bam -r pos -s reverse -a 10 -t exon -i gene_id -m intersection-nonempt
 # htseq-count requires libcrypto.so.1.0.0, which may not be properly installed under some python versions. 
 # If a error message is generateing saying the libary is missing, try to load the python/3.6.1 to fix it.
 
-# Gene Body Coverage
+# Genebody Coverage
 $samtools sort $Outdir/Sample/Aligned.toTranscriptome.out.bam \
 $Outdir/Sample/Aligned.toTranscriptome.out.sorted && $samtools index $Outdir/Sample/Aligned.toTranscriptome.out.sorted.bam
 $bedtools multicov -bams $Outdir/Sample/Aligned.toTranscriptome.out.sorted.bam -bed $binlist_hg38 > $Outdir/Sample/readsDistribution.txt
