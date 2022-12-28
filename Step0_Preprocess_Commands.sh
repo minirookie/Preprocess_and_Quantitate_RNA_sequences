@@ -1,8 +1,8 @@
-
 ## 0.1 The BAM files of paired-end sequencing MUST be first sorted by individual sequence names (indices). 
 
 ## Write the following scripts in a .sh file to run the sorting jobs on HPC
 ## "#BUSB" can be recognized by HPC to inititate the runs
+#! /bin/sh
 #BSUB -P RNASeq_pipeline
 #BSUB -n 8
 #BSUB -R "rusage[mem=2000]"
@@ -17,7 +17,7 @@ module load samtools
 
 ## To sort the BAM files, use "samtools sort -n -o output.sorted input.bam".
 ##[* IF Error: fail to open file output.sorted, please use "samtools sort -n input.bam output.sorted"]
-samtools sort -n $bamfilepath/xxx.bam $sortedfilepath/xxx_sorted.bam 
+samtools sort -n $bamfilepath/xxx.bam $sortedfilepath/xxx_sorted 
 
 ## Write the following looping scripts separately for batch submitting the sorting jobs
 bamfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAM
@@ -31,6 +31,7 @@ done
 
 ## 0.2 If starting from BAM files (e.g., downloaded from some databases), convert them into FASTQ files
 ## Write the following scripts in a .sh file to run the preprocessing jobs on HPC
+#! /bin/sh
 #BSUB -P RNASeq_pipeline
 #BSUB -n 8
 #BSUB -R "rusage[mem=2000]"
@@ -58,4 +59,24 @@ cat $FQfilepath/RunGzip_HPCJob_SeTrial.sh | sed -e 's/xyz/'${name}'/g' > tmp
 bsub < tmp
 done
 
+## 0.3 Compress the .raw.fq files to allow them viewed afterwards by the zcat command
+## Write the following looping scripts separately for batch submitting the compressing jobs
+FQfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
+for f in $FQfilepath/*.raw.fq; do
+name=$(basename $f .raw.fq)
+echo ${name}
+cat $FQfilepath/RunGzip_HPCJob_SeTrial.sh | sed -e 's/xyz/'${name}'/g' > tmp
+bsub < tmp
+done
 
+## Write the following scripts in a .sh file to run the compress jobs via HPC
+#! /bin/sh
+#BSUB -P Compress raw .fq file
+#BSUB -n 8
+#BSUB -M 5000
+#BSUB -R "span[hosts=1]"
+#BSUB -oo Gzip_xyz.out -eo Gzip_xyz.err
+#BSUB -J Gzip_xyz
+#BSUB -q standard
+
+gzip xyz.raw.fq
