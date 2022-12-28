@@ -55,7 +55,7 @@ $genebody $outdir/Sample/readsDistribution.txt $outdir/Sample/genebodyCoverage
 # 4) quant.transcript.sorted.bam: sorted alignments to reference transcriptome
 # 5) quant.transcript.sorted.bam.bai: index of sorted alignments to reference transcriptome
 
-## Write separately the looping scripts below for batch submitting the above quantification jobs
+## Write separately the looping scripts below for batch submitting the above quantification and/or gene body analysis jobs
 #! /bin/sh
 CleanFQPath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
 outdir=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/Bowtie2Alignment_RSEMQuanti
