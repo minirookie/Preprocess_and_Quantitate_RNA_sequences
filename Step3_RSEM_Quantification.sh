@@ -13,7 +13,7 @@ bowtie2=/research_jude/rgs01_jude/applications/hpcf/apps/bowtie/install/2.2.9/bi
 bedtools=/research_jude/rgs01_jude/applications/hpcf/apps/bedtools/install/2.25.0/bin/bedtools
 genebody=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/git_repo/RNASeq_pipelines/05_genebodyCoverage.R
 
-#reference database
+#reference database for indexing transcripts
 reference_hg38bowtie2=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg38/gencode.release32/RSEM/index_bowtie2/hg38
 reference_hg38star=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg38/gencode.release32/RSEM/index_star/hg38
 reference_hg19bowtie2=/research_jude/rgs01_jude/groups/yu3grp/projects/software_JY/yu3grp/yulab_databases/references/hg19/gencode.release32/RSEM/index_bowtie2/hg19
