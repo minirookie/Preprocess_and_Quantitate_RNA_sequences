@@ -1,4 +1,5 @@
-## 0.1 The BAM files of paired-end sequencing MUST be first sorted by individual sequence names (indices). 
+## 0.1 If starting from BAM files (e.g., downloaded from some databases), the BAM files of paired-end sequencing 
+## MUST be first sorted by individual sequence names (indices). 
 
 ## Write the following scripts in a .sh file to run the sorting jobs on HPC
 ## "#BUSB" can be recognized by HPC to inititate the runs
@@ -29,7 +30,7 @@ bsub < tmp
 done
 
 
-## 0.2 If starting from BAM files (e.g., downloaded from some databases), convert them into FASTQ files
+## 0.2 convert BAM files into FASTQ files
 ## Write the following scripts in a .sh file to run the preprocessing jobs on HPC
 #! /bin/sh
 #BSUB -P RNASeq_pipeline
