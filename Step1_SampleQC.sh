@@ -1,5 +1,5 @@
 ## Trim adaptors and check the quality for each sample
-## Write the following scripts in a .sh file to run the trimming jobs on HPC
+## Write the following scripts in a .sh file ("QConFQ_SeTrial_HPCJob.sh") to run the trimming jobs on HPC
 #BSUB -P RNASeq_pipeline
 #BSUB -n 8
 #BSUB -R "rusage[mem=4000]"
