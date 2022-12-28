@@ -1,4 +1,4 @@
-## Write the following scripts in a .sh file ("RSEMnBowtie2_RunonHPC.sh") to run salmon quasi-mapping and quantification on HPC
+## Write the following scripts in a .sh file ("RSEMnBowtie2_RunonHPC.sh") to run RSEM mapping and quantification on HPC
 #! /bin/sh
 #BSUB -P RNASeq_pipelines_GB
 #BSUB -n 8
