@@ -41,18 +41,33 @@ $star --runMode alignReads --runThreadN 8 --twopassMode Basic \
     --outFilterMatchNminOverLread 0.33 --outFilterScoreMinOverLread 0.33 --outFilterMismatchNoverLmax 0.1 \
     --outFilterMismatchNmax 999 --outFilterMultimapNmax 20 --outFilterType BySJout --outSAMstrandField intronMotif \
     --readFilesCommand zcat --genomeDir $index_hg38oh100 --readFilesIn $CleanFQPath/SampSubs_PE1.clean.fq.gz $CleanFQPath/SampSubs_PE2.clean.fq.gz
+    
+# $star options explanation
+# 1) --quantMode TranscriptomeSAM: used to generate the alignment to transcriptome. Highly recommended.
+# 2) --outSAMattrRGline: edit it everytime.
+# 3) --readFilesCommand: zcat for .gz files, bzcat for .bz2 files.
+# 4) The GDC mRNA quantification analysis pipeline is followed, https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/.
+# 5) check out more information of STAR: https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf.
 
 # HTSeq Quantification
 module load python/3.6.1
 $htseq -f bam -r pos -s reverse -a 10 -t exon -i gene_id -m intersection-nonempty --nonunique none --secondary-alignments score \
   --supplementary-alignments score $Outdir/Sample/Aligned.out.bam $gtf_hg38 > $Outdir/Sample/htseq_counts.txt
+# htseq-count requires libcrypto.so.1.0.0, which may not be properly installed under some python versions. 
+# If a error message is generateing saying the libary is missing, try to load the python/3.6.1 to fix it.
 
 # Gene Body Coverage
 $samtools sort $Outdir/Sample/Aligned.toTranscriptome.out.bam \
 $Outdir/Sample/Aligned.toTranscriptome.out.sorted && $samtools index $Outdir/Sample/Aligned.toTranscriptome.out.sorted.bam
 $bedtools multicov -bams $Outdir/Sample/Aligned.toTranscriptome.out.sorted.bam -bed $binlist_hg38 > $Outdir/Sample/readsDistribution.txt
 $genebody $Outdir/Sample/readsDistribution.txt $Outdir/Sample/genebodyCoverage
+# It is recommended to complete the alignment and quantification runs ($star & $htseq) before and the $genebody run 
+# check out here for more information of HTSeq: https://htseq.readthedocs.io/en/release_0.11.1/count.html.
 
+# Key Outputs:
+# 1) Aligned.sortedByCoord.out.bam: Alignments to reference genome, sorted by coordinates.
+# 2) Aligned.toTranscriptome.out.bam: Alignments to reference transcriptome.
+# 3) htseq_counts.txt: HTSeq gene expression quantification, COUNTS.
 
 ## Write separately the looping scripts below for batch submitting the above quantification and/or gene body analysis jobs
 #! /bin/sh
