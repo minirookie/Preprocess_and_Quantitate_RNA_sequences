@@ -33,7 +33,7 @@ $fastqc $FQfilepath/xxx_PE2.clean.fq.gz -o $QCoutputPath
 
 # For Single-end sequence reads, use $fastqc sample.clean.fq.gz -o output_dir
 
-## Write the following looping scripts separately for batch submitting the sequence cleanup
+## Write the following looping scripts separately for batch submitting the sequence cleanup and QC jobs
 FQfilepath=/research_jude/rgs01_jude/groups/yu3grp/projects/RelapseALL/yu3grp/AML/JefferyKlco/SELHEM_RNASeq/BAMprocessing_SYB/FASTQ_files_SeTrial
 for f in $FQfilepath/*.raw.fq.gz; do
 name=$(basename $f .raw.fq.gz)
