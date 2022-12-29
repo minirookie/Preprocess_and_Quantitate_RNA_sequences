@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
-## Usage: Rscript Genebody_Coverage.R readsDistribution.txt prefix_of_output
+## Gene Body Coverage Analysis: this analysis plots the distributions of reads along the transcripts/genes. 
+## It is used to evaluate the quality of the sample library, especially sample (RNA) degradation status.
 ## Inputs: Two Arguments
 ##      1) readsDistribution.txt: this file is generated in previous step. It's the outcome of sequencing reads mapped to the bins of each transcript.
 ##      2) prefix_of_output: The is the prefix of the outputs, including prefix_of_output.txt and prefix_of_output.pdf
