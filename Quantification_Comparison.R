@@ -3,7 +3,7 @@
 ## 0 configure the inputs
 indir_salmon = "/dir of Salmon Outputs" 
 indir_rsem = "/dir of RSEM Outputs" 
-outdir = "/dir of output" # this is where correlation and master tables deposit
+outdir = "/output dir for this script" # this is where correlation and master tables deposit
 samples = c("sample1", "sample2")
 cat("The input information has been read!\n")
 
