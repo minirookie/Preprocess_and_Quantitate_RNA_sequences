@@ -30,8 +30,3 @@ Step 4. Quantification by STAR-HTSeq Strategy
 GDC recommends the STAR-HTSeq strategy.
 The 2-pass STAR alignment is famous for its speed and accuracy.
 HTSeq is very popular for quantifying the expression of genes.
-
-
-Quantification Summary
-The expression matrix of all samples under a specific quantification method is generated.
-The correlation between different quantification methods is calculated.
