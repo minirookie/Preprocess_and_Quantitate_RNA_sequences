@@ -31,9 +31,7 @@ GDC recommends the STAR-HTSeq strategy.
 The 2-pass STAR alignment is famous for its speed and accuracy.
 HTSeq is very popular for quantifying the expression of genes.
 
-Step 5. Gene Body Coverage Analysis
-This analysis plots the distributions of reads along the transcripts/gens. It is used to evaluate the quality of the sample library, especially the status of RNA degradation.
 
-Step 6. Quantification Summary
+Quantification Summary
 The expression matrix of all samples under a specific quantification method is generated.
-The correlation between quantification methods is calculated.
+The correlation between different quantification methods is calculated.
